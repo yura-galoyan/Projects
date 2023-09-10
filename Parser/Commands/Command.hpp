@@ -7,6 +7,7 @@ class Command
 {
 public:
     virtual double execute(std::vector<double>&) = 0;
+    virtual ~Command() { };
 };
 
 

@@ -1,6 +1,6 @@
-#include "IOHandler.hpp"
+#include "IostreamPolicy.hpp"
 
-std::string IOHandler::getInput( ){
+std::string IostreamPolicy::getInput( ){
 
     std::string tmp;
 

@@ -2,9 +2,9 @@
 #define CONTROLLER_HPP
 
 #include "CommandHandler.hpp"
-#include "IOHandler.hpp"
 #include "Parser.hpp"
 
+template<typename IOPolicy>
 class Controller
 {
 public:
@@ -19,5 +19,6 @@ private:
     bool isDone{};
 };
 
+#include "Controller.impl.hpp"
 
 #endif //CONTROLLER_HPP

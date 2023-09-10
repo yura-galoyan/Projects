@@ -8,8 +8,11 @@
 #include "Commands/ModCommand.hpp"
 #include "Commands/AndCommand.hpp"
 #include "Commands/OrCommand.hpp"
+#include "Commands/NotCommand.hpp"
+#include "Commands/XorCommand.hpp"
 
-Controller::Controller(){    
+template<typename IOPolicy>
+Controller<IOPolicy>::Controller(){    
     commandHandler.addCommand("add", std::make_unique<AddCommand>());
     commandHandler.addCommand("sub", std::make_unique<SubCommand>());
     commandHandler.addCommand("mul", std::make_unique<MulCommand>());
@@ -17,21 +20,25 @@ Controller::Controller(){
     commandHandler.addCommand("mod", std::make_unique<ModCommand>());
     commandHandler.addCommand("and", std::make_unique<AndCommand>());
     commandHandler.addCommand("or", std::make_unique<OrCommand>());
+    commandHandler.addCommand("not", std::make_unique<NotCommand>());
+    commandHandler.addCommand("xor", std::make_unique<XorCommand>());
     commandHandler.addCommand("quit", std::make_unique<QuitCommand>());
 };
 
-void Controller::run(){
-    IOHandler::output("Enter Command. \"quit\" for exit ");
+
+template<typename IOPolicy>
+void Controller<IOPolicy>::run(){
+    IOPolicy::output("Enter Command. \"quit\" for exit ");
     while(!isDone){
-        parser.setInput(IOHandler::getInput());
+        parser.setInput(IOPolicy::getInput());
         try{
             auto command = parser.getCommand();
             auto operands = parser.getOperands();
             auto result = commandHandler.execute(command, operands);
-            IOHandler::output("Result is: ", result);
+            IOPolicy::output("Result is: ", result);
         }
         catch(const std::invalid_argument& msg){
-            std::cerr << msg.what() << ". try again" << std::endl;
+            IOPolicy::output(msg.what()," . try again");
         }
     }
 }
