@@ -1,16 +1,22 @@
 #include "Controller.hpp"
 
-#include "AddCommand.hpp"
-#include "SubCommand.hpp"
-#include "QuitCommand.hpp"
-#include "MulCommand.hpp"
-#include "DivCommand.hpp"
+#include "Commands/AddCommand.hpp"
+#include "Commands/SubCommand.hpp"
+#include "Commands/QuitCommand.hpp"
+#include "Commands/MulCommand.hpp"
+#include "Commands/DivCommand.hpp"
+#include "Commands/ModCommand.hpp"
+#include "Commands/AndCommand.hpp"
+#include "Commands/OrCommand.hpp"
 
 Controller::Controller(){    
     commandHandler.addCommand("add", std::make_unique<AddCommand>());
     commandHandler.addCommand("sub", std::make_unique<SubCommand>());
     commandHandler.addCommand("mul", std::make_unique<MulCommand>());
     commandHandler.addCommand("div", std::make_unique<DivCommand>());
+    commandHandler.addCommand("mod", std::make_unique<ModCommand>());
+    commandHandler.addCommand("and", std::make_unique<AndCommand>());
+    commandHandler.addCommand("or", std::make_unique<OrCommand>());
     commandHandler.addCommand("quit", std::make_unique<QuitCommand>());
 };
 

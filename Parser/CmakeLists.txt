@@ -2,13 +2,16 @@ cmake_minimum_required(VERSION 3.1)
 project(parser)
 
 add_executable(parser main.cpp
-CommandHandler.cpp
 Controller.cpp
 IOHandler.cpp
 Parser.cpp
-AddCommand.cpp
-SubCommand.cpp
-MulCommand.cpp
-DivCommand.cpp
-QuitCommand.cpp
+CommandHandler.cpp
+Commands/AddCommand.cpp
+Commands/SubCommand.cpp
+Commands/MulCommand.cpp
+Commands/DivCommand.cpp
+Commands/ModCommand.cpp
+Commands/AndCommand.cpp
+Commands/OrCommand.cpp
+Commands/QuitCommand.cpp
 )

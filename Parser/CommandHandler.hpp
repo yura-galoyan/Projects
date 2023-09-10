@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include "Command.hpp"
+#include "Commands/Command.hpp"
 
 class CommandHandler
 {
