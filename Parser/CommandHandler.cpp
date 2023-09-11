@@ -7,8 +7,14 @@ void CommandHandler::addCommand(std::string key, std::unique_ptr<Command> comman
 }
 
 double CommandHandler::execute(std::string key, std::vector<double>& operands){
-    if(commands.find(key) == commands.end()){
+    auto command = findCommand(key);
+    return command->execute(operands);
+}
+
+Command* CommandHandler::findCommand(const std::string &key) {
+    auto command = commands.find(key);
+    if(command == commands.end()){
         throw std::invalid_argument{"Wrong command"};
     }
-    return commands[key]->execute(operands);
+    return command->second.get();   
 }

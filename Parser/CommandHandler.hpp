@@ -15,6 +15,9 @@ public:
     double execute(std::string key, std::vector<double>&);
 
 private:
+    Command* findCommand(const std::string& key);
+
+private:
     std::unordered_map<std::string, std::unique_ptr<Command> > commands; 
 
 };
